@@ -14,8 +14,9 @@
   </template>
 
   <script setup>
-    import { ref, onMounted } from 'vue';
-    import axios from 'axios';
+    import { computed, onMounted } from 'vue';
+    import { useStore } from 'vuex';
+    import { Store } from 'vuex';
     
     // Definindo colunas
     const columns = [
@@ -32,21 +33,13 @@
     ];
 
     
-    // Criando um ref para armazenar os dados da tabela
-    const data = ref([]);
-    
-    // Função para buscar os dados
-    const fetchData = async () => {
-        try {
-        const response = await axios.get('http://localhost:3000/voos');
-        data.value = response.data; // Atualizando o valor do ref 'data'
-        } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-        }
-    };
-    
-    // Usando o onMounted para buscar os dados quando o componente for montado
+        // Acessando a store Vuex
+    const store = useStore();
+    const data = computed(() => store.state.data);
+
+    // Buscando os dados quando o componente é montado
     onMounted(() => {
-        fetchData();
+        store.dispatch('fetchData');
     });
+
   </script>
