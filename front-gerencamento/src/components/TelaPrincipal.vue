@@ -44,12 +44,12 @@
         <a-breadcrumb style="margin: 16px 0">
           <h1>Tabela de Voos</h1>
         </a-breadcrumb>
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+        <div :style="{ padding: '20px', background: '#fff', minHeight: '360px' }">
           <TabelaVoo />
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
+        Ant Design ©2018 Desafio NEURON Created by João Paulo
       </a-layout-footer>
     </a-layout>
   </a-layout>

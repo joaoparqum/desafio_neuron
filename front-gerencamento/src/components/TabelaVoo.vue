@@ -1,25 +1,73 @@
 <template>
-    <a-button type="primary" @click="navigateToAddFlight">Adicionar Vôo</a-button>
-    <br><br>
+  <a-button type="primary" @click="navigateToAddFlight">Adicionar Vôo</a-button>
+  <br><br>
     <a-input-search
       v-model:value="value"
       placeholder="Procurar vôo pelo código"
       enter-button
       @search="onSearch"
     />
-    <br><br>
-      <a-table :columns="columns" :data-source="data">
-        <template #actions="{ text, record }">
-          <a-button
-            type="link"
-            @click="handleButtonClick(record)"
-            icon={EditOutlined}
-          >
-            Editar
-          </a-button>
-        </template>
-      </a-table>
-  </template>
+  <br><br>
+  <a-table :columns="columns" :data-source="data">
+    <!-- Personalizar cabeçalhos das colunas -->
+    <template #headerCell="{ column }">
+      <template v-if="column.key === 'codigoVoo'">
+        <span>Código do Vôo</span>
+      </template>
+      <template v-if="column.key === 'actions'">
+        <span>Ações</span>
+      </template>
+    </template>
+
+    <!-- Personalizar células das colunas -->
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.key === 'codigoVoo'">
+        {{ record.codigoVoo }}
+      </template>
+      <template v-else-if="column.key === 'origemCEP'">
+        {{ record.origemCEP }}
+      </template>
+      <template v-else-if="column.key === 'origemPais'">
+        {{ record.origemPais }}
+      </template>
+      <template v-else-if="column.key === 'origemCidade'">
+        {{ record.origemCidade }}
+      </template>
+      <template v-else-if="column.key === 'origemEstado'">
+        {{ record.origemEstado }}
+      </template>
+      <template v-else-if="column.key === 'destinoCEP'">
+        {{ record.destinoCEP }}
+      </template>
+      <template v-else-if="column.key === 'destinoPais'">
+        {{ record.destinoPais }}
+      </template>
+      <template v-else-if="column.key === 'destinoCidade'">
+        {{ record.destinoCidade }}
+      </template>
+      <template v-else-if="column.key === 'destinoEstado'">
+        {{ record.destinoEstado }}
+      </template>
+      <template v-else-if="column.key === 'date'">
+        {{ record.date }}
+      </template>
+      <template v-else-if="column.key === 'actions'">
+        <a-button
+          type="link"
+          @click="onEdit(record)"
+        >
+          Editar
+        </a-button>
+        <a-button
+          type="link"
+          @click="onDelete(record)"
+        >
+          Excluir
+        </a-button>
+      </template>
+    </template>
+  </a-table>
+</template>
 
   <script setup>
     import { computed, onMounted } from 'vue';
@@ -75,10 +123,12 @@
 
     const onEdit = (record) => {
       console.log('Editar voo', record);
+      router.push({ path: '/editar-voo', query: { id: record.id } });
     };
 
     const onDelete = (record) => {
-      store.dispatch('deleteData');
+      console.log('Excluir voo', record);
+      store.dispatch('deleteData', record.id);
     };
 
   </script>

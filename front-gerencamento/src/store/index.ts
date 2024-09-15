@@ -36,7 +36,7 @@ const store = createStore<State>({
         console.error('Erro ao buscar voo por código:', error);
       }
     },
-    async deleteData({ commit }, id) {
+    async deleteData({ dispatch }, id) {
       try {
         await axios.delete(`http://localhost:3000/voos/${id}`);
         dispatch('fetchData');
