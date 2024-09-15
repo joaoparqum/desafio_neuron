@@ -56,6 +56,7 @@
 </template>
 
 <script lang="ts" setup>
+
   import {
     PieChartOutlined,
     DesktopOutlined,
@@ -63,13 +64,17 @@
     TeamOutlined,
     FileOutlined,
   } from '@ant-design/icons-vue';
+
   import { ref } from 'vue';
   import TabelaVoo from './TabelaVoo.vue'
+
   const collapsed = ref<boolean>(true);
   const selectedKeys = ref<string[]>(['1']);
+
 </script>
 
 <style scoped>
+
   #components-layout-demo-side .logo {
     height: 32px;
     margin: 16px;
@@ -82,4 +87,5 @@
   [data-theme='dark'] .site-layout .site-layout-background {
     background: #141414;
   }
+  
 </style>
