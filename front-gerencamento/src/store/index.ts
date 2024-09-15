@@ -49,7 +49,19 @@ const store = createStore<State>({
         await axios.post('http://localhost:3000/voos', flightData);
         dispatch('fetchData');
       } catch (error) {
-        console.error('Erro ao adicionar voo:', error);
+        if (error.response && error.response.data && error.response.data.message) {
+          throw new Error(error.response.data.message);
+        } else {
+          throw new Error('Erro ao adicionar voo.');
+        }
+      }
+    },
+    async updateFlight({ dispatch }, { id, updatedData }) {
+      try {
+        await axios.put(`http://localhost:3000/voos/${id}`, updatedData);
+        dispatch('fetchData');
+      } catch (error) {
+        console.error('Erro ao atualizar o voo:', error);
       }
     }
   },

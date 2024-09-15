@@ -1,71 +1,78 @@
 <template>
+  <h1 style="text-align: center; margin-top: 10px;">Cadastro de Vôo</h1>
   <div class="form-container">
     <a-form
-    :model="formState"
-    v-bind="layout"
-    name="flight-form"
-    :validate-messages="validateMessages"
-    @finish="onPost"
-  >
-    <a-form-item :name="['flight', 'origemCEP']" label="Origem CEP" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.origemCEP" />
-    </a-form-item>
+      :layout="formState"
+      :model="formState"
+      name="flight-form"
+      :validate-messages="validateMessages"
+      @finish="onPost"
+    >
 
-    <a-form-item :name="['flight', 'origemPais']" label="Origem País" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.origemPais" />
-    </a-form-item>
+      <a-form-item label="Origem CEP" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.origemCEP" placeholder="Digite o CEP de origem" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'origemCidade']" label="Origem Cidade" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.origemCidade" />
-    </a-form-item>
+      <a-form-item label="Origem País" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.origemPais" placeholder="Digite o País de origem" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'origemEstado']" label="Origem Estado" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.origemEstado" />
-    </a-form-item>
+      <a-form-item label="Origem Cidade" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.origemCidade" placeholder="Digite a Cidade de origem" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'destinoCEP']" label="Destino CEP" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.destinoCEP" />
-    </a-form-item>
+      <a-form-item label="Origem Estado" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.origemEstado" placeholder="Digite o Estado de origem" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'destinoPais']" label="Destino País" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.destinoPais" />
-    </a-form-item>
+      <a-form-item label="Destino CEP" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.destinoCEP" placeholder="Digite o CEP de destino" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'destinoCidade']" label="Destino Cidade" :rules="[{ required: true }]">
-      <a-input style="margin-left: 12px;" v-model:value="formState.flight.destinoCidade" />
-    </a-form-item>
+      <a-form-item label="Destino País" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.destinoPais" placeholder="Digite o País de destino" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'destinoEstado']" label="Destino Estado" :rules="[{ required: true }]">
-      <a-input style="margin-left: 10px;" v-model:value="formState.flight.destinoEstado" />
-    </a-form-item>
+      <a-form-item label="Destino Cidade" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.destinoCidade" placeholder="Digite a Cidade de destino" />
+      </a-form-item>
 
-    <a-form-item :name="['flight', 'date']" label="Data do Vôo" :rules="[{ required: true }]">
-      <a-date-picker style="margin-left: 10px;" v-model:value="formState.flight.date" />
-    </a-form-item>
+      <a-form-item label="Destino Estado" :rules="[{ required: true }]">
+        <a-input v-model:value="formState.flight.destinoEstado" placeholder="Digite o Estado de destino" />
+      </a-form-item>
 
-    <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
-      <a-button type="primary" html-type="submit">Cadastrar Vôo</a-button>
-    </a-form-item>
-  </a-form>
+      <a-form-item label="Data do Vôo" :rules="[{ required: true }]">
+        <a-date-picker v-model:value="formState.flight.date" style="width: 100%;" />
+      </a-form-item>
+
+      <a-form-item>
+        <a-button type="primary" html-type="submit">Cadastrar Vôo</a-button>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
 <script lang="ts" setup>
     import { reactive } from 'vue';
     import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router'; 
+    import { useRouter } from 'vue-router';
     import { message } from 'ant-design-vue';
 
-    const layout = {
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 },
-    };
+    interface FlightForm {
+      flight: {
+        origemCEP: string;
+        origemPais: string;
+        origemCidade: string;
+        origemEstado: string;
+        destinoCEP: string;
+        destinoPais: string;
+        destinoCidade: string;
+        destinoEstado: string;
+        date: string;
+      };
+    }
 
-    const validateMessages = {
-      required: '${label} é obrigatório!',
-    };
-
-    const formState = reactive({
+    const formState = reactive<FlightForm>({
       flight: {
         origemCEP: '',
         origemPais: '',
@@ -79,33 +86,33 @@
       },
     });
 
+
+    const validateMessages = {
+      required: '${label} é obrigatório!',
+    };
+
     const store = useStore();
     const router = useRouter();
 
-    const onFinish = (values: any) => {
-      console.log('Dados do voo:', values);
-    };
-
     const onPost = async () => {
       try {
-          await store.dispatch('addFlight', formState);
-
-          message.success('Vôo cadastrado com sucesso!');
-
-          router.push('/');
-        } catch (error) {
-          message.error('Erro ao cadastrar o voo!');
-          console.error(error);
+        await store.dispatch('addFlight', formState.flight);
+        message.success('Vôo cadastrado com sucesso!');
+        setTimeout(() => {
+            router.push('/');
+          }, 2000);
+      } catch (error) {
+        message.error(error.message || 'Erro ao cadastrar o voo!');
+        console.error('Erro ao cadastrar o voo:', error);
       }
-    };  
-
+    };
 </script>
 
 <style scoped>
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; 
-}
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 </style>

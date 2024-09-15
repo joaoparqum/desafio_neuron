@@ -9,7 +9,7 @@
     />
   <br><br>
   <a-table :columns="columns" :data-source="data">
-    <!-- Personalizar cabeçalhos das colunas -->
+    
     <template #headerCell="{ column }">
       <template v-if="column.key === 'codigoVoo'">
         <span>Código do Vôo</span>
@@ -19,7 +19,6 @@
       </template>
     </template>
 
-    <!-- Personalizar células das colunas -->
     <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'codigoVoo'">
         {{ record.codigoVoo }}
@@ -74,6 +73,7 @@
     import { useStore } from 'vuex';
     import { DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
     import { Button } from 'ant-design-vue';
+    import { message } from 'ant-design-vue';
 
     import { useRouter } from 'vue-router';
 
@@ -126,9 +126,14 @@
       router.push({ path: '/editar-voo', query: { id: record.id } });
     };
 
-    const onDelete = (record) => {
-      console.log('Excluir voo', record);
-      store.dispatch('deleteData', record.id);
+    const onDelete = async (record) => {
+      try {
+        await store.dispatch('deleteData', record.id);
+        message.success('Vôo excluído com sucesso!');
+      } catch (error) {
+        message.error('Erro ao excluir o voo!');
+        console.error(error);
+      }
     };
 
   </script>

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param, Get, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Param, Get, Delete, Put } from '@nestjs/common';
 import { VoosService } from './voos.service';
 import { Voo } from './voos.entity';
 
@@ -11,7 +11,7 @@ export class VoosController {
     return this.flightsService.createFlight(flightData);
   }
 
-  @Patch(':id')
+  @Put(':id')
   updateFlight(
     @Param('id') id: number,
     @Body() flightData: Partial<Voo>,

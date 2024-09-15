@@ -42,7 +42,7 @@
       <a-layout-header style="background: #fff; padding: 0" />
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0">
-          <h1>Tabela de Voos</h1>
+          <h1 style="color: black; font-size: 20px;">Tabela de Voos</h1>
         </a-breadcrumb>
         <div :style="{ padding: '20px', background: '#fff', minHeight: '360px' }">
           <TabelaVoo />
@@ -65,7 +65,7 @@
   } from '@ant-design/icons-vue';
   import { ref } from 'vue';
   import TabelaVoo from './TabelaVoo.vue'
-  const collapsed = ref<boolean>(false);
+  const collapsed = ref<boolean>(true);
   const selectedKeys = ref<string[]>(['1']);
 </script>
 
