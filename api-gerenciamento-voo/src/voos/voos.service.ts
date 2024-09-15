@@ -14,7 +14,6 @@ export class VoosService {
   async createFlight(flightData: Partial<Voo>): Promise<Voo> {
     const { date, destinoCidade, destinoPais } = flightData;
 
-    // Verifica se já existe um voo para o mesmo destino no mesmo dia
     const existingFlight = await this.flightsRepository.findOne({
       where: {
         destinoCidade,
@@ -32,7 +31,6 @@ export class VoosService {
       );
     }
 
-    // Verifica diferença mínima de 30 minutos
     const flights = await this.flightsRepository.find();
     for (const flight of flights) {
       const flightTime = new Date(flight.date).getTime();
@@ -65,6 +63,10 @@ export class VoosService {
 
   async getFlightById(id: number): Promise<Voo> {
     return this.flightsRepository.findOne({ where: { id } });
+  }
+
+  async getFlightByCode(codigoVoo: string): Promise<Voo> {
+    return this.flightsRepository.findOne({ where: { codigoVoo } });
   }
 
   async deleteFlight(id: number): Promise<void> {

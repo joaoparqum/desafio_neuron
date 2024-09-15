@@ -23,6 +23,11 @@ export class VoosController {
    getAllFlights(): Promise<Voo[]> {
      return this.flightsService.getAllFlights();
    }
+
+   @Get('code/:codigoVoo')
+   async getFlightByCode(@Param('codigoVoo') codigoVoo: string): Promise<Voo> {
+     return this.flightsService.getFlightByCode(codigoVoo);
+   }
  
    @Get(':id')
    getFlightById(@Param('id') id: number): Promise<Voo> {

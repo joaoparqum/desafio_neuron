@@ -28,6 +28,33 @@ const store = createStore<State>({
         console.error('Erro ao buscar dados:', error);
       }
     },
+    async searchFlightByCode({ commit }, flightCode) {
+      try {
+        const response = await axios.get(`http://localhost:3000/voos/code/${flightCode}`);
+        commit('setData', [response.data]);
+      } catch (error) {
+        console.error('Erro ao buscar voo por código:', error);
+      }
+    },
+    async deleteData({ commit }, id) {
+      try {
+        await axios.delete(`http://localhost:3000/voos/${id}`);
+        dispatch('fetchData');
+      } catch (error) {
+        console.error('Erro ao excluir o voo:', error);
+      }
+    },
+    async addFlight({ dispatch }, flightData) {
+      try {
+        await axios.post('http://localhost:3000/voos', flightData);
+        dispatch('fetchData');
+      } catch (error) {
+        console.error('Erro ao adicionar voo:', error);
+      }
+    }
+  },
+  getters: {
+    flightData: (state) => state.data,
   },
 });
 
