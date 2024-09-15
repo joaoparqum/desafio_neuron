@@ -71,8 +71,6 @@ No seu navegador acesse o link: http://localhost:5173/
 
 ## 🛠️ Construído com
 
-Mencione as ferramentas que você usou para criar seu projeto
-
 * [Nest.Js](https://docs.nestjs.com/) - Framework back-end 
 * [Vue + Vite](https://vitejs.dev/guide/) - Framework Front-end
 * [Vuex](https://vuex.vuejs.org/guide/#the-simplest-store) - Padrão de gerenciamento de estado
