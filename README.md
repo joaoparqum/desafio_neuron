@@ -5,6 +5,9 @@ Repositório para hospedar desafio full-stack da vaga Estágio Desenvolvedor Web
 ## ✒️ Autores
 * **João Paulo Arquim** - *Software Developer* - [joaoparqum](https://github.com/joaoparqum)
 
+## 🖥  Print
+![Captura de tela 2024-09-15 170617](https://github.com/user-attachments/assets/cef4d174-01b4-4569-96be-e778bbe2ce3b)
+
 ## 🚀 Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
@@ -70,8 +73,9 @@ No seu navegador acesse o link: http://localhost:5173/
 
 Mencione as ferramentas que você usou para criar seu projeto
 
-* [Nest.Js](https://docs.nestjs.com/) - O framework back-end usado
+* [Nest.Js](https://docs.nestjs.com/) - Framework back-end 
 * [Vue + Vite](https://vitejs.dev/guide/) - Framework Front-end
+* [Vuex](https://vuex.vuejs.org/guide/#the-simplest-store) - Padrão de gerenciamento de estado
 * [PostgreSQL](https://www.postgresql.org/docs/15/index.html) - O SGBD usado 
 
 ## 📌 Versão
