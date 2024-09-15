@@ -76,6 +76,7 @@ Mencione as ferramentas que você usou para criar seu projeto
 * [Nest.Js](https://docs.nestjs.com/) - Framework back-end 
 * [Vue + Vite](https://vitejs.dev/guide/) - Framework Front-end
 * [Vuex](https://vuex.vuejs.org/guide/#the-simplest-store) - Padrão de gerenciamento de estado
+* [Ant Design of Vue](https://antdv.com/docs/vue/introduce) - Biblioteca Vue UI antd
 * [PostgreSQL](https://www.postgresql.org/docs/15/index.html) - O SGBD usado 
 
 ## 📌 Versão
