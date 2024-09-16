@@ -1,5 +1,4 @@
 <template>
-  <h1 style="text-align: center; margin-top: 10px;">Cadastro de Vôo</h1>
   <div class="form-container">
     <a-form
       :layout="formState"
@@ -8,47 +7,49 @@
       :validate-messages="validateMessages"
       @finish="onPost"
     >
+      <div class="label-container">
+          <h1 style="text-align: center; margin-top: 10px;">Cadastro de Vôo</h1>
+          <a-form-item label="Origem CEP" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.origemCEP" placeholder="Digite o CEP de origem" />
+          </a-form-item>
 
-      <a-form-item label="Origem CEP" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.origemCEP" placeholder="Digite o CEP de origem" />
-      </a-form-item>
+          <a-form-item label="Origem País" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.origemPais" placeholder="Digite o País de origem" />
+          </a-form-item>
 
-      <a-form-item label="Origem País" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.origemPais" placeholder="Digite o País de origem" />
-      </a-form-item>
+          <a-form-item label="Origem Cidade" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.origemCidade" placeholder="Digite a Cidade de origem" />
+          </a-form-item>
 
-      <a-form-item label="Origem Cidade" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.origemCidade" placeholder="Digite a Cidade de origem" />
-      </a-form-item>
+          <a-form-item label="Origem Estado" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.origemEstado" placeholder="Digite o Estado de origem" />
+          </a-form-item>
 
-      <a-form-item label="Origem Estado" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.origemEstado" placeholder="Digite o Estado de origem" />
-      </a-form-item>
+          <a-form-item label="Destino CEP" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.destinoCEP" placeholder="Digite o CEP de destino" />
+          </a-form-item>
 
-      <a-form-item label="Destino CEP" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.destinoCEP" placeholder="Digite o CEP de destino" />
-      </a-form-item>
+          <a-form-item label="Destino País" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.destinoPais" placeholder="Digite o País de destino" />
+          </a-form-item>
 
-      <a-form-item label="Destino País" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.destinoPais" placeholder="Digite o País de destino" />
-      </a-form-item>
+          <a-form-item label="Destino Cidade" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.destinoCidade" placeholder="Digite a Cidade de destino" />
+          </a-form-item>
 
-      <a-form-item label="Destino Cidade" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.destinoCidade" placeholder="Digite a Cidade de destino" />
-      </a-form-item>
+          <a-form-item label="Destino Estado" :rules="[{ required: true }]">
+            <a-input v-model:value="formState.flight.destinoEstado" placeholder="Digite o Estado de destino" />
+          </a-form-item>
 
-      <a-form-item label="Destino Estado" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.flight.destinoEstado" placeholder="Digite o Estado de destino" />
-      </a-form-item>
+          <a-form-item label="Data do Vôo" :rules="[{ required: true }]">
+            <a-date-picker v-model:value="formState.flight.date" style="width: 100%;" />
+          </a-form-item>
 
-      <a-form-item label="Data do Vôo" :rules="[{ required: true }]">
-        <a-date-picker v-model:value="formState.flight.date" style="width: 100%;" />
-      </a-form-item>
-
-      <a-form-item>
-        <a-button type="primary" html-type="submit">Cadastrar Vôo</a-button>
-      </a-form-item>
-    </a-form>
+          <a-form-item>
+            <a-button type="primary" html-type="submit">Cadastrar Vôo</a-button>
+          </a-form-item>
+      </div>
+    </a-form> 
   </div>
 </template>
 
@@ -114,5 +115,13 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: rgb(0, 0, 43);
   }
+
+  .label-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 0px 30px 3px 30px;
+  }
+
 </style>
