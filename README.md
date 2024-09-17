@@ -1,4 +1,4 @@
-# DESAFIO NEURON
+# DESAFIO NEORON
 
 Repositório para hospedar desafio full-stack da vaga Estágio Desenvolvedor Web
 

@@ -49,7 +49,7 @@
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Desafio NEURON Created by João Paulo
+        Ant Design ©2018 Desafio NEORON Created by João Paulo
       </a-layout-footer>
     </a-layout>
   </a-layout>
