@@ -8,13 +8,13 @@ import * as moment from 'moment';
 export class VoosService {
   constructor(
     @InjectRepository(Voo)
-    private flightsRepository: Repository<Voo>,
+    private voosRepository: Repository<Voo>,
   ) {}
 
   async createFlight(flightData: Partial<Voo>): Promise<Voo> {
     const { date, destinoCidade, destinoPais } = flightData;
 
-    const existingFlight = await this.flightsRepository.findOne({
+    const vooExistente = await this.voosRepository.findOne({
       where: {
         destinoCidade,
         destinoPais,
@@ -25,18 +25,18 @@ export class VoosService {
       },
     });
 
-    if (existingFlight) {
+    if (vooExistente) {
       throw new BadRequestException(
         'Já existe um voo para o mesmo destino neste dia.',
       );
     }
 
-    const flights = await this.flightsRepository.find();
-    for (const flight of flights) {
-      const flightTime = new Date(flight.date).getTime();
-      const newFlightTime = new Date(date).getTime();
+    const voos = await this.voosRepository.find();
+    for (const voo of voos) {
+      const tempoDeVoo = new Date(voo.date).getTime();
+      const novoTempoDeVoo = new Date(date).getTime();
 
-      if (Math.abs(newFlightTime - flightTime) < 30 * 60 * 1000) {
+      if (Math.abs(novoTempoDeVoo - tempoDeVoo) < 30 * 60 * 1000) {
         throw new BadRequestException(
           'Os voos devem ter ao menos 30 minutos de diferença.',
         );
@@ -45,31 +45,31 @@ export class VoosService {
 
     const codigoVoo = `FL${Math.floor(Math.random() * 100000)}`;
 
-    const newFlight = this.flightsRepository.create({
+    const novoVoo = this.voosRepository.create({
       ...flightData,
       codigoVoo,
     });
-    return this.flightsRepository.save(newFlight);
+    return this.voosRepository.save(novoVoo);
   }
 
   async updateFlight(id: number, flightData: Partial<Voo>): Promise<Voo> {
-    await this.flightsRepository.update(id, flightData);
-    return this.flightsRepository.findOne({ where: { id } });
+    await this.voosRepository.update(id, flightData);
+    return this.voosRepository.findOne({ where: { id } });
   }
 
   async getAllFlights(): Promise<Voo[]> {
-    return this.flightsRepository.find();
+    return this.voosRepository.find();
   }
 
   async getFlightById(id: number): Promise<Voo> {
-    return this.flightsRepository.findOne({ where: { id } });
+    return this.voosRepository.findOne({ where: { id } });
   }
 
   async getFlightByCode(codigoVoo: string): Promise<Voo> {
-    return this.flightsRepository.findOne({ where: { codigoVoo } });
+    return this.voosRepository.findOne({ where: { codigoVoo } });
   }
 
   async deleteFlight(id: number): Promise<void> {
-    await this.flightsRepository.delete(id);
+    await this.voosRepository.delete(id);
   }
 }

@@ -14,7 +14,7 @@ import { VoosController } from './voos/voos.controller';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '',
+      password: 'hanamichi',
       database: 'voo-db',
       entities: [Voo],
       synchronize: true,  

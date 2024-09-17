@@ -4,11 +4,11 @@ import { Voo } from './voos.entity';
 
 @Controller('voos')
 export class VoosController {
-  constructor(private flightsService: VoosService) {}
+  constructor(private voosService: VoosService) {}
 
   @Post()
   createFlight(@Body() flightData: Partial<Voo>): Promise<Voo> {
-    return this.flightsService.createFlight(flightData);
+    return this.voosService.createFlight(flightData);
   }
 
   @Put(':id')
@@ -16,26 +16,26 @@ export class VoosController {
     @Param('id') id: number,
     @Body() flightData: Partial<Voo>,
   ): Promise<Voo> {
-    return this.flightsService.updateFlight(id, flightData);
+    return this.voosService.updateFlight(id, flightData);
   }
 
    @Get()
    getAllFlights(): Promise<Voo[]> {
-     return this.flightsService.getAllFlights();
+     return this.voosService.getAllFlights();
    }
 
    @Get('code/:codigoVoo')
    async getFlightByCode(@Param('codigoVoo') codigoVoo: string): Promise<Voo> {
-     return this.flightsService.getFlightByCode(codigoVoo);
+     return this.voosService.getFlightByCode(codigoVoo);
    }
  
    @Get(':id')
    getFlightById(@Param('id') id: number): Promise<Voo> {
-     return this.flightsService.getFlightById(id);
+     return this.voosService.getFlightById(id);
    }
  
    @Delete(':id')
    deleteFlight(@Param('id') id: number): Promise<void> {
-     return this.flightsService.deleteFlight(id);
+     return this.voosService.deleteFlight(id);
    }
 }
