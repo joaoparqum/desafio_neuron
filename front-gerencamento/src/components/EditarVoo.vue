@@ -90,7 +90,6 @@
       },
     });
 
-
     const validateMessages = {
       required: '${label} é obrigatório!',
     };
@@ -99,6 +98,7 @@
     const route = useRoute();
     const router = useRouter();
 
+    // Modificar para pegar o ID da query em vez de params
     const loadFlightData = async (id: string) => {
       try {
         const response = await axios.get(`http://localhost:3000/voos/${id}`);
@@ -109,7 +109,7 @@
     };
 
     onMounted(() => {
-      const flightId = route.params.id as string;
+      const flightId = route.query.id as string;
       if (flightId) {
         loadFlightData(flightId);
       }
@@ -117,11 +117,9 @@
 
     const onEdit = async () => {
       try {
-      
         const id = formState.flight.id;
-        
+
         if (id) {
-        
           const updatedData = {
             origemCEP: formState.flight.origemCEP,
             origemPais: formState.flight.origemPais,
@@ -134,11 +132,9 @@
             date: formState.flight.date,
           };
 
-        
           await store.dispatch('updateFlight', { id, updatedData });
           message.success('Vôo editado com sucesso!');
 
-        
           setTimeout(() => {
             router.push('/');
           }, 2000);
@@ -150,8 +146,6 @@
         console.error(error);
       }
     };
-
-
 </script>
 
 <style scoped>
